@@ -1,5 +1,16 @@
 <template>
-  <table class="variant-table">
+  <div>
+    <div>
+    <ButtonCustom>
+      <span>Button</span>
+      <span>&rarr;</span>
+    </ButtonCustom>
+    <ButtonCustom btnType="icon" intent="secondary" size="xl">
+      <span>&rarr;</span>
+    </ButtonCustom>
+  </div>
+  <div>
+    <table class="variant-table">
     <thead>
       <tr>
         <th></th>
@@ -26,10 +37,13 @@
       </tr>
     </tbody>
   </table>
+  </div>
+  </div>
 </template>
 
 <script setup lang="ts">
 import ButtonCva from "@/components/ButtonCva.vue";
+import ButtonCustom from "@/components/ButtonCustom.vue";
 
 const intents = [undefined, "primary", "secondary", "tertiary"] as const;
 const sizes = [undefined, "sm", "md", "lg", "xl"] as const;

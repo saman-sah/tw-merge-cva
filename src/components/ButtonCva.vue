@@ -87,7 +87,6 @@ const button = cva([
     btnType: {
       button: "",
       icon: [
-        'px-0',
         'rounded-full'
       ]
     }
