@@ -1,27 +1,49 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <table class="variant-table">
+    <thead>
+      <tr>
+        <th></th>
+        <th v-for="intent in intents" :key="intent">
+          {{ intent || "default" }}
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="size in sizes" :key="size">
+        <th scope="row">{{ size || "default" }}</th>
+
+        <td v-for="(intent, index) in intents" :key="index">
+          <ButtonCva :intent="intent" :size="size"
+            >{{ intent || "default" }} 
+            <span>Button</span>
+            <span>&rarr;</span>
+          </ButtonCva>
+          <ButtonCva :intent="intent" :size="size" btnType="icon"
+            >
+            <span>&rarr;</span>
+          </ButtonCva>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </template>
 
-<script lang="ts">
-import { Options, Vue } from 'vue-class-component';
-import HelloWorld from './components/HelloWorld.vue';
+<script setup lang="ts">
+import ButtonCva from "@/components/ButtonCva.vue";
 
-@Options({
-  components: {
-    HelloWorld,
-  },
-})
-export default class App extends Vue {}
+const intents = [undefined, "primary", "secondary", "tertiary"] as const;
+const sizes = [undefined, "sm", "md", "lg", "xl"] as const;
 </script>
+<style scoped>
+.variant-table {
+  position: relative;
+  height: max-content;
+  width: max-content;
+  align-self: center;
+  justify-self: center;
+}
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+.variant-table :where(th, td) {
+  padding: 0.5rem;
 }
 </style>
